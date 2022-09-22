@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人首页</title>
+   
+</head>
+<style>
+
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    .home {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .content {
+        perspective: 340px;
+        width: 100%;
+        position: relative;
+    }
+
+    h1 {
+        color: white;
+        text-align: center;
+    }
+
+    span {
+        display: block;
+        text-align: center;
+    }
+
+ 
+
+    .stars:before,
+    .stars:after {
+        content: "";
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        box-shadow: inherit;
+    }
+
+    .stars:before {
+        transform: translateZ(-300px);
+        opacity: .6;
+    }
+
+    .stars:after {
+        transform: translateZ(-600px);
+        opacity: .4;
+    }
+
+    @keyframes fly {
+        from {
+            transform: translateZ(0px);
+            opacity: .6;
+        }
+        to {
+            transform: translateZ(200px);
+            opacity: .8;
+        }
+    }
+
+    .title {
+        position: absolute;
+        display: flex;
+        justify-content: left;
+        left: 100px;
+        right: 0;
+        top: 300px;
+        margin: auto;
+        bottom: 0;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .titles {
+        position: absolute;
+        display: flex;
+        justify-content: left;
+        left: 100px;
+        right: 0;
+        top: 380px;
+        margin: auto;
+        bottom: 0;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .icon {
+        width: 15px;
+        height: 15px;
+        padding: 5px;
+        border: 2px solid #fff;
+        border-radius: 100%;
+        position: absolute;
+        left: 49%;
+        bottom: 50px;
+        animation: downs 2s linear infinite;
+    }
+
+    @keyframes downs {
+        from {
+            transform: translatey(0px);
+            opacity: .6;
+        }
+        to {
+            transform: translatey(30px);
+            opacity: .8;
+        }
+    }
+
+    .ribbon {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: 300px;
+        top: 50px;
+        margin: auto;
+    }
+
+    .ribbon:after,
+    .ribbon:before {
+        margin-top: 0.5em;
+        content: "";
+        display: flex;
+    ;
+        border: 1.5em solid #fff;
+    }
+
+    .ribbon:after {
+        border-right-color: transparent;
+    }
+
+    .ribbon:before {
+        border-left-color: transparent;
+    }
+
+    .ribbon a:link,
+    .ribbon a:visited {
+        color: #000;
+        text-decoration: none;
+        height: 3.5em;
+        overflow: hidden;
+    }
+
+    .ribbon span {
+        background: #fff;
+        display: inline-block;
+        line-height: 3em;
+        padding: 0 1.5em;
+        margin-top: 0.5em;
+        position: relative;
+        -webkit-transition: background-color 0.2s, margin-top 0.2s;
+        /* Saf3.2+, Chrome */
+        -moz-transition: background-color 0.2s, margin-top 0.2s;
+        /* FF4+ */
+        -ms-transition: background-color 0.2s, margin-top 0.2s;
+        /* IE10 */
+        -o-transition: background-color 0.2s, margin-top 0.2s;
+        /* Opera 10.5+ */
+        transition: background-color 0.2s, margin-top 0.2s;
+    }
+
+    .ribbon a:hover span {
+        background: #FFD204;
+        margin-top: 0;
+    }
+
+    .ribbon span:before {
+        content: "";
+        position: absolute;
+        top: 3em;
+        left: 0;
+        border-right: 0.5em solid #9B8651;
+        border-bottom: 0.5em solid #fff;
+    }
+
+    .ribbon span:after {
+        content: "";
+        position: absolute;
+        top: 3em;
+        right: 0;
+        border-left: 0.5em solid #9B8651;
+        border-bottom: 0.5em solid #fff;
+    }
+
+    .introduce {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .introduce_item {
+        display: flex;
+        justify-content: center;
+        margin-top: 60px;
+    }
+
+    .introduce_item_img {
+        width: 800px;
+        height: 500px;
+    }
+
+    .introduce_item_title {
+        width: 300px;
+        font-size: 18px;
+        line-height: 36px;
+        align-self: center;
+        padding-left: 100px;
+    }
+
+    .introduce_item_titles {
+        width: 300px;
+        font-size: 18px;
+        line-height: 36px;
+        align-self: center;
+        padding-right: 100px;
+    }
+
+    audio {
+        position: fixed;
+        bottom: 50px;
+        right: 0;
+    }
+
+    .music_img {
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        width: 40px;
+        height: 30px;
+        animation: muscis 5s linear infinite;
+    }
+
+    @keyframes muscis {
+        from {
+            transform: rotate (0deg);
+            opacity: .6;
+        }
+        to {
+            transform: rotate(360deg);
+            opacity: .8;
+        }
+    }
+
+    .icons {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 400px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .icons_items {
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        margin-top: 80px;
+        width: 200px;
+    }
+
+    .icons_items_imgs {
+        width: 200px;
+        margin-bottom: 30px;
+    }
+
+
+</style>
+<body>
+<div class="home">
+    <div class="content">
+        <div class="stars"></div>
+        <img class="bgc"  src="1.jpg" width="1550" height="812">
+      <h3 class="title">欢迎来到四川轻化工大学 <br> Welcome to Sichuan University of Science&Engineering</h3>
+        <h3 class="titles">今天也要加油鸭</h3>
+        <div class='ribbon'>
+            <a href='home.html'><span>Home</span></a>
+            <a href='about.html'><span>About</span></a>
+          
+            <a href='contact.html'><span>Contact</span></a>
+        </div>
+    </div>
+    <div class="icons">
+        <div class="icons_items">
+            <img class="icons_items_imgs"  src="2.jpg" width="160" height="120" >
+            <span>教学楼是我们每天必去取经之地</span>
+        </div>
+        <div class="icons_items">
+            <img class="icons_items_imgs" src="3.jpg" width="160" height="120" >
+            <span>每天都要在食堂里面纠结到底吃什么</span>
+        </div>
+        <div class="icons_items">
+            <img class="icons_items_imgs"  src="5.jpg" width="160" height="120" >
+            <span>图书馆是大家学习的天堂</span>
+        </div>
+        <div class="icons_items">
+            <img class="icons_items_imgs"  src="6.jpg" width="160" height="120">
+            <span>夜幕降临，但还是有学习的同学伴着月光在教室将自己的梦想点亮</span>
+        </div>
+    </div>
+    <div class="introduce">
+        <div class="introduce_item">
+            <img class="introduce_item_img" src="7.jpg" width="160" height="120">
+            <span class="introduce_item_title">天空还是一片浅蓝,转眼间东方出现了一道红霞,红霞慢慢地在扩大，不大一会就染红了小半边天。颜色红得可爱， 又 过了一会儿,在那个地方出现了太阳的小半边脸。</span>
+
+        </div>
+        <div class="introduce_item">
+
+            <span class="introduce_item_titles">当清晨的阳光洒进我们温馨的寝室，忙碌的一天又开始了，闹钟开始响起，每个人睡眼惺忪，从床上爬起，忙忙碌碌的穿梭在食堂与教室之间</span>
+            <img class="introduce_item_img" src="8.jpg" width="160" height="120">
+        </div>
+        <div class="introduce_item">
+            <img class="introduce_item_img" src="9.jpg" width="160" height="120">
+            <span class="introduce_item_title">温暖的阳光照耀着大地，远处的小山都金灿灿的美轮美奂，它穿梭于微隙的气息。舒倘，漫长。紫檀的香味，弥漫在春日，把天地间一切空虚盈满，阳光下，是一道纤绝的尘陌，呢喃着天真，充盈着那抹曾经深不可测的孤清而飘逸的影。</span>
+        </div>
+        <div class="introduce_item">
+            <span class="introduce_item_titles">当夜幕快要降临时，抬头望向天空，晚霞染红了半边天，美丽极了，裹紧衣裳，在这优美的夕阳中慢慢的走回寝室。</span>
+            <img class="introduce_item_img"  src="10.jpg" width="160" height="120">
+        </div>
+
+  </div>
+
+</div>
+
+</body>
+
+
+</html>
